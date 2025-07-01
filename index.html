@@ -4,89 +4,134 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ghostdev13</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0d0d0d;
+      font-family: 'Rubik', sans-serif;
+      background: radial-gradient(ellipse at bottom, #1a1a1a 0%, #0d0d0d 100%);
       color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem;
+      overflow: hidden;
     }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
     .card {
-      background: #1a1a1a;
+      z-index: 1;
+      position: relative;
+      background: rgba(20, 20, 20, 0.9);
       border-radius: 20px;
       padding: 2rem;
       max-width: 400px;
+      margin: 5vh auto;
       text-align: center;
-      box-shadow: 0 0 20px rgba(255, 0, 100, 0.3);
+      box-shadow: 0 0 25px rgba(255, 0, 100, 0.3);
+      animation: fadeIn 1.5s ease;
     }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .avatar {
       width: 100px;
       height: 100px;
       border-radius: 50%;
       border: 3px solid #ff3366;
     }
+
     h1 {
       margin: 1rem 0 0.5rem;
       font-size: 1.8rem;
       color: #ff3366;
+      text-shadow: 0 0 8px #ff4d88;
     }
+
     p {
       margin-bottom: 1rem;
       color: #ccc;
     }
+
     .discord {
       background: #2c2f33;
       padding: 1rem;
       border-radius: 10px;
       margin: 1rem 0;
     }
+
     .discord img {
       width: 40px;
       height: 40px;
       border-radius: 50%;
       vertical-align: middle;
     }
+
     .discord span {
       margin-left: 0.5rem;
       font-weight: bold;
       vertical-align: middle;
     }
+
     .badges {
       margin-top: 0.5rem;
     }
+
     .badges img {
       width: 20px;
       margin: 0 3px;
     }
+
     .links {
       margin-top: 1.5rem;
     }
+
     .links a {
       margin: 0 8px;
       color: white;
       text-decoration: none;
       font-size: 1.5rem;
+      filter: drop-shadow(0 0 4px #fff);
+      transition: transform 0.2s;
     }
+
+    .links a:hover {
+      transform: scale(1.2);
+    }
+
     .about {
       margin-top: 2rem;
       padding-top: 1rem;
       border-top: 1px solid #333;
       color: #aaa;
       font-size: 0.95rem;
+      text-align: left;
     }
+
+    .about ul {
+      padding-left: 1.2rem;
+    }
+
     .footer {
       margin-top: 2rem;
       color: #666;
       font-size: 0.8rem;
+      text-align: center;
     }
   </style>
   <script src="config.js"></script>
 </head>
 <body>
+  <canvas id="bg"></canvas>
+
   <div class="card">
     <img id="mainAvatar" src="" alt="Avatar" class="avatar" />
     <h1>ghostdev13</h1>
@@ -102,17 +147,17 @@
 
     <div class="about">
       <strong>About Me:</strong><br>
-      I'm an aspiring developer passionate about building things with code.<br>
+      I'm an aspiring developer passionate about building things with code.<br><br>
       I'm currently learning:
-      <ul style="text-align:left; margin-top: 0.5rem;">
+      <ul>
         <li>🟢 Node.js (backend)</li>
         <li>🔷 TypeScript (typing + frontend/backend)</li>
         <li>🧱 Roblox Lua (game scripting)</li>
       </ul>
     </div>
-  </div>
 
-  <div class="footer">© 2025 ghostdev13</div>
+    <div class="footer">© 2025 ghostdev13</div>
+  </div>
 
   <script>
     const baseURL = `https://cdn.discordapp.com/avatars/${discordProfile.userId}/${discordProfile.avatarHash}.webp`;
@@ -145,6 +190,63 @@
       a.textContent = icons[key] || key;
       linksContainer.appendChild(a);
     });
+  </script>
+
+  <script>
+    const canvas = document.getElementById("bg");
+    const ctx = canvas.getContext("2d");
+    let particles = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+
+    function createParticles(count) {
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 2 + 1,
+          d: Math.random() * 0.5 + 0.5
+        });
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#ff3366";
+      ctx.shadowColor = "#ff3366";
+      ctx.shadowBlur = 8;
+
+      particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+    }
+
+    function moveParticles() {
+      particles.forEach(p => {
+        p.y += p.d;
+        if (p.y > canvas.height) {
+          p.y = 0;
+          p.x = Math.random() * canvas.width;
+        }
+      });
+    }
+
+    function animate() {
+      drawParticles();
+      moveParticles();
+      requestAnimationFrame(animate);
+    }
+
+    createParticles(100);
+    animate();
   </script>
 </body>
 </html>
