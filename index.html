@@ -42,11 +42,27 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    .avatar-wrapper {
+      position: relative;
+      display: inline-block;
+    }
+
     .avatar {
       width: 100px;
       height: 100px;
       border-radius: 50%;
       border: 3px solid #ff3366;
+    }
+
+    .status-icon {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #0d0d0d;
+      padding: 2px;
     }
 
     h1 {
@@ -68,7 +84,7 @@
       margin: 1rem 0;
     }
 
-    .discord img {
+    .discord img.avatar-small {
       width: 40px;
       height: 40px;
       border-radius: 50%;
@@ -122,7 +138,7 @@
 
     .footer {
       margin-top: 2rem;
-      color: #666;
+      color: #777;
       font-size: 0.8rem;
       text-align: center;
     }
@@ -133,12 +149,16 @@
   <canvas id="bg"></canvas>
 
   <div class="card">
-    <img id="mainAvatar" src="" alt="Avatar" class="avatar" />
+    <div class="avatar-wrapper">
+      <img id="mainAvatar" src="" alt="Avatar" class="avatar" />
+      <img class="status-icon" src="https://assets.guns.lol/idle.png" title="Idle" />
+    </div>
+
     <h1>ghostdev13</h1>
-    <p>I'm Ghost, trying to learn Node.js, TypeScript, and Roblox Lua</p>
+    <p>I'm Ghost, and I'm currently learning Node.js, TypeScript, and Roblox Lua.</p>
 
     <div class="discord">
-      <img id="discordAvatar" src="" alt="Discord Avatar">
+      <img id="discordAvatar" src="" alt="Discord Avatar" class="avatar-small">
       <span id="discordUsername"></span>
       <div class="badges" id="discordBadges"></div>
     </div>
@@ -156,7 +176,7 @@
       </ul>
     </div>
 
-    <div class="footer">© 2025 ghostdev13</div>
+    <div class="footer">© 2025 ghostdev13 — Made with 💻 and ☕</div>
   </div>
 
   <script>
