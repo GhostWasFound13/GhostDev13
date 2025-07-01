@@ -7,7 +7,7 @@
 
 - 🔭 Currently building: **Discord bots, APIs, and game systems**
 - 🧠 Learning: **Mongoose**, **Websockets**, and **Microservices**
-- 💬 Ask me about: `Node.js`, `MongoDB`, `Express`, `Game dev logic`
+- 💬 Ask me about: `Node.js`, `MongoDB`, `Express`, `Game dev logic`, `and etc`
 - 🌍 Based in: **Indonesia**
 - ⚡ Fun fact: *I debug faster when the coffee is strong ☕*
 
