@@ -1,6 +1,6 @@
 <h1 align="center">Hey 👋, I'm GhostWasFound13</h1>
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=500&size=24&pause=1000&color=00F7FF&center=true&vCenter=true&width=435&lines=Full-stack+Developer;Discord+Bot+Maker;Always+Learning+New+Things" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=500&size=24&pause=1000&color=00F7FF&center=true&vCenter=true&width=435&lines=Small+Developer;Discord+Bot+Maker;Always+Learning+New+Things" alt="Typing SVG" />
 </p>
 
 ---
