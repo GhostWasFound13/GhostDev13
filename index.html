@@ -71,38 +71,80 @@
       text-decoration: none;
       font-size: 1.5rem;
     }
+    .about {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid #333;
+      color: #aaa;
+      font-size: 0.95rem;
+    }
     .footer {
       margin-top: 2rem;
       color: #666;
       font-size: 0.8rem;
     }
   </style>
+  <script src="config.js"></script>
 </head>
 <body>
   <div class="card">
-    <img src="https://cdn.discordapp.com/avatars/USER_ID/AVATAR_HASH.png" alt="Avatar" class="avatar" />
+    <img id="mainAvatar" src="" alt="Avatar" class="avatar" />
     <h1>ghostdev13</h1>
     <p>I'm Ghost, trying to learn Node.js, TypeScript, and Roblox Lua</p>
 
     <div class="discord">
-      <img src="https://cdn.discordapp.com/avatars/USER_ID/AVATAR_HASH.png" alt="Discord Avatar">
-      <span>ghostrgh54</span>
-      <div class="badges">
-        <!-- Replace these icons with real badge URLs if needed -->
-        <img src="https://raw.githubusercontent.com/discordjs/discord.js/main/website/static/img/logo.svg" alt="Badge 1" title="Verified"/>
-        <img src="https://cdn-icons-png.flaticon.com/512/252/252025.png" alt="Badge 2" title="Early Supporter"/>
-      </div>
+      <img id="discordAvatar" src="" alt="Discord Avatar">
+      <span id="discordUsername"></span>
+      <div class="badges" id="discordBadges"></div>
     </div>
 
-    <div class="links">
-      <a href="https://github.com/ghostdev13" target="_blank">🐙</a>
-      <a href="https://x.com/ghostdev13" target="_blank">X</a>
-      <a href="https://roblox.com/users/ghostdev13" target="_blank">🧱</a>
-      <a href="https://twitch.tv/ghostdev13" target="_blank">🎮</a>
-      <a href="https://youtube.com/@ghostdev13" target="_blank">▶️</a>
+    <div class="links" id="socialLinks"></div>
+
+    <div class="about">
+      <strong>About Me:</strong><br>
+      I'm an aspiring developer passionate about building things with code.<br>
+      I'm currently learning:
+      <ul style="text-align:left; margin-top: 0.5rem;">
+        <li>🟢 Node.js (backend)</li>
+        <li>🔷 TypeScript (typing + frontend/backend)</li>
+        <li>🧱 Roblox Lua (game scripting)</li>
+      </ul>
     </div>
   </div>
 
   <div class="footer">© 2025 ghostdev13</div>
+
+  <script>
+    const baseURL = `https://cdn.discordapp.com/avatars/${discordProfile.userId}/${discordProfile.avatarHash}.png`;
+
+    document.getElementById("mainAvatar").src = baseURL;
+    document.getElementById("discordAvatar").src = baseURL;
+    document.getElementById("discordUsername").textContent = discordProfile.username;
+
+    const badgesContainer = document.getElementById("discordBadges");
+    discordProfile.badges.forEach(badge => {
+      const img = document.createElement("img");
+      img.src = badge.src;
+      img.title = badge.title;
+      badgesContainer.appendChild(img);
+    });
+
+    const linksContainer = document.getElementById("socialLinks");
+    const icons = {
+      github: "🐙",
+      twitter: "X",
+      roblox: "🧱",
+      twitch: "🎮",
+      youtube: "▶️"
+    };
+
+    Object.entries(socialLinks).forEach(([key, url]) => {
+      const a = document.createElement("a");
+      a.href = url;
+      a.target = "_blank";
+      a.textContent = icons[key] || key;
+      linksContainer.appendChild(a);
+    });
+  </script>
 </body>
 </html>
