@@ -1,7 +1,7 @@
 // config.js
 const discordProfile = {
-  userId: "YOUR_USER_ID",
-  avatarHash: "YOUR_AVATAR_HASH",
+  userId: "1126451428681076787",
+  avatarHash: "https://cdn.discordapp.com/avatars/1126451428681076787/966bebed6053908813427a3bf2e4aa29.webp",
   username: "ghostrgh54",
   badges: [
     {
