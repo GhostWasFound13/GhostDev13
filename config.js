@@ -5,11 +5,11 @@ const discordProfile = {
   username: "ghostrgh54",
   badges: [
     {
-      src: "https://raw.githubusercontent.com/discordjs/discord.js/main/website/static/img/logo.svg",
+      src: "https://assets.guns.lol/idle.png",
       title: "Verified"
     },
     {
-      src: "https://cdn-icons-png.flaticon.com/512/252/252025.png",
+      src: "https://cdn.discordapp.com/badge-icons/3aa41de486fa12454c3761e8e223442e.png",
       title: "Early Supporter"
     }
   ]
